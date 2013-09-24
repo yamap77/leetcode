@@ -4,7 +4,8 @@ public class Solution {
 	 private char[][] map = new char[][] { { 'a', 'b', 'c' }, { 'd', 'e', 'f' },
 				{ 'g', 'h', 'i' }, { 'j', 'k', 'l' }, { 'm', 'n', 'o' },
 				{ 'p', 'q', 'r', 's' }, { 't', 'u', 'v'}, { 'w', 'x', 'y', 'z' } };
-	public ArrayList<String> findLetterCom(String digits){		
+	/*
+	 public ArrayList<String> findLetterCom(String digits){		
 		ArrayList<String> res=new ArrayList<String>();
 		StringBuilder s=new StringBuilder();
 		letterCom(digits,0,s,res);
@@ -17,7 +18,7 @@ public class Solution {
 			res.add(s.toString());
 		}
 		else{
-			int index=Character.getNumericValue(digits.charAt(i))-1;
+			int index=Character.getNumericValue(digits.charAt(i))-2;
 			int size=map[index].length;
 		for(int j=0;j<size;j++){
 			s.append(map[index][j]);
@@ -25,6 +26,27 @@ public class Solution {
 			s.deleteCharAt(s.length()-1);
 		}
 
+		}
+		
+	}
+	*/
+	public ArrayList findLetterCom(String digits){
+		ArrayList<String> res=new ArrayList<String>();
+		StringBuilder s=new StringBuilder();
+		letterCom(digits,0,s,res);
+		return res;
+	}
+	public void letterCom(String digits, int curr,StringBuilder s, ArrayList<String> res){
+		if(s.length()==digits.length()){
+			res.add(new String(s));
+		}
+		else{
+			int index=Character.getNumericValue(digits.charAt(curr))-2;
+			for(int i=0;i<map[index].length;i++){
+				s.append(map[index][i]);
+				letterCom(digits, curr+1,s,res);
+				s.deleteCharAt(s.length()-1);
+			}
 		}
 		
 	}
